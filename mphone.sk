@@ -55,5 +55,5 @@ command /mphone [<text>]:
 	permission: admin
 	trigger:
 		if arg-1 is "buy":
-			open {mphone.buy.gui} to player
+			open {mphone_gui.buy} to player
 			stop
