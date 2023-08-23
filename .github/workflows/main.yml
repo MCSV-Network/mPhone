@@ -22,9 +22,5 @@ jobs:
             cd ${{ secrets.SERVER_PULL_DIR }}
             git checkout .
             git pull origin main
-            cp homev3.sk ${{ secrets.SERVER_DEPLOY_DIR }}
-            cp HomeV3/homev3-main.sk ${{ secrets.SERVER_DEPLOY_DIR }}/HomeV3/
-            cp HomeV3/homev3-functions.sk ${{ secrets.SERVER_DEPLOY_DIR }}/HomeV3/
-            cp HomeV3/homev3-updater.sk ${{ secrets.SERVER_DEPLOY_DIR }}/HomeV3/
-            cp HomeV3/homev3-gui.sk ${{ secrets.SERVER_DEPLOY_DIR }}/HomeV3/
-            screen -p 0 -S minecraft -X eval 'stuff "githubactionsnotify HomeV3\015"'
+            cp mphone.sk ${{ secrets.SERVER_DEPLOY_DIR }}
+            screen -p 0 -S minecraft -X eval 'stuff "githubactionsnotify mPhone\015"'
