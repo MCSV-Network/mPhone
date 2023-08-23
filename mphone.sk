@@ -1,1 +1,59 @@
 #mphone by ringoXD
+
+#Variables:
+	#umm
+
+options:
+	version: 0.0.1-alpha
+
+on skript load:
+	if {mphone_gui.buy} is not set:
+		set {mphone_gui.buy} to chest with 4 row named "&dmPhone&0を購入しますか？"
+		set {_a} to 0
+		loop 35 times:
+			set slot {_a} of {mphone_gui.buy} to yellow stained glass pane named ""
+			add 1 to {_a}
+		set slot 13 of {mphone_gui.buy} to {mphone}
+		set {_a} to 14
+		set slot 27 of {mphone_gui.buy} to light blue stained glass pane named ""
+		set slot 28 of {mphone_gui.buy} to lime stained glass pane named "&e320,000円&aで購入する！"
+		set slot 29 of {mphone_gui.buy} to light blue stained glass pane named ""
+		set slot 30 of {mphone_gui.buy} to light blue stained glass pane named ""
+		set slot 31 of {mphone_gui.buy} to light blue stained glass pane named ""
+		set slot 32 of {mphone_gui.buy} to light blue stained glass pane named ""
+		set slot 33 of {mphone_gui.buy} to light blue stained glass pane named ""
+		set slot 34 of {mphone_gui.buy} to red stained glass pane named "&c購入をキャンセルする"
+		set slot 35 of {mphone_gui.buy} to light blue stained glass pane named ""
+		send "[mPhone] Generated mPhone_gui." to console
+	
+	
+	send "[mPhone] Successfully loaded mPhone." to console
+
+
+on inventory click:
+	if player's current inventory is {mphone_gui.buy}:
+		cancel event
+		if event-item is lime stained glass pane:
+			close player's inventory
+			if player's money >= 320000:
+				give {mphone} with lore "&bこの一台で様々なサービスを利用できる。" and "&b今の現代社会になくてはならない必需品。" and "" and "&a型番: %{mphone.model}%" to player
+				remove 320000 from player's money
+				add {mphone.model} to {mphone.models::*}
+				add 1 to {mphone.model}
+				send "&aあなたは &dmPhone &aを購入しました！"
+				stop
+			if player's money < 320000:
+				send "&cmPhoneを購入する金額が足りません！"
+				stop
+		
+		if event-item is red stained glass pane:
+			close player's inventory
+			stop
+
+
+command /mphone [<text>]:
+	permission: admin
+	trigger:
+		if arg-1 is "buy":
+			open {mphone.buy.gui} to player
+			stop
